@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Lean.Touch;
@@ -7,7 +8,7 @@ public class InputController : MonoBehaviour, IInputController
 {
     public InputType InputType;
     public JoystickType JoystickType;
-
+    public static Joystick Joystick { get; private set; }
     /// <summary>
     /// Current Vector2 of finger/mouse movement 
     /// </summary>
@@ -15,6 +16,15 @@ public class InputController : MonoBehaviour, IInputController
 
     public bool PreventInput { get; private set; }
 
+    private void Awake()
+    {
+        Joystick = FindObjectOfType<FixedJoystick>(true);
+        
+    }
+
+    private void Update()
+    {
+    }
 
     private void OnEnable()
     {
@@ -79,7 +89,7 @@ public class InputController : MonoBehaviour, IInputController
         PreventInput = value;
     }
 
-    public bool IsInputExist()
+    public static bool IsInputExist()
     {
         return Input.GetMouseButton(0) || Input.touchCount > 0;
     }

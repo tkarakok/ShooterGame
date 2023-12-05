@@ -1,5 +1,5 @@
 ﻿
-    public enum JoystickType
+    public enum InputJoystickType
     {
         Static,
         Floating,

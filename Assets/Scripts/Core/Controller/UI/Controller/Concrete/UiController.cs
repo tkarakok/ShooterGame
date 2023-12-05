@@ -27,7 +27,7 @@ public class UiController : MonoBehaviour, IUiController
         
         GetAllPanels();
         CloseAllPanels();
-        OpenSpecificPanel(MainMenuPanel);
+        OpenSpecificPanel(InGamePanel);
     }
 
     public Result GetAllPanels()
