@@ -7,14 +7,14 @@ using UnityEngine;
 [RequireComponent(typeof(ObjectPoolController))]
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
-    private ObjectPoolController _objectPoolController;
+    public ObjectPoolController OjectPoolController { get; private set; }
     private void Awake()
     {
-        _objectPoolController = GetComponent<ObjectPoolController>();
+        OjectPoolController = GetComponent<ObjectPoolController>();
     }
 
     private void Start()
     {
-        _objectPoolController.InitializePools();
+        OjectPoolController.InitializePools();
     }
 }

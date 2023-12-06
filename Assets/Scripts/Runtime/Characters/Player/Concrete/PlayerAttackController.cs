@@ -14,7 +14,7 @@ public class PlayerAttackController : CharacterAttackController
 
     private void Update()
     {
-        if (Weapon != null)
+        if (Weapon != null && Input.GetKeyDown(KeyCode.F))
             Attack(Weapon);
     }
     

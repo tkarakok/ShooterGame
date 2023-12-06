@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PoolType 
+public interface IBullet
 {
-    Default,
-    Bullet
+    void SetDamage(int damage);
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb3a1cc003974442802b52ea0228e57, type: 3}
   m_Name: PistoLData
   m_EditorClassIdentifier: 
-  Damage: 0
-  ReloadDuration: 0
+  Damage: 15
+  ReloadDuration: 2
