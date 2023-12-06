@@ -28,7 +28,7 @@ public class InputController : MonoBehaviour, IInputController
 
     private void OnEnable()
     {
-        if (InputType == InputType.Touch)
+        if (InputType == InputType.Touch || InputType == InputType.Both)
         {
             LeanTouch.OnFingerDown += OnFingerDown;
             LeanTouch.OnFingerUpdate += OnFingerUpdate;
@@ -38,7 +38,7 @@ public class InputController : MonoBehaviour, IInputController
 
     protected void OnDisable()
     {
-        if (InputType == InputType.Touch)
+        if (InputType == InputType.Touch || InputType == InputType.Both)
         {
             LeanTouch.OnFingerDown -= OnFingerDown;
             LeanTouch.OnFingerUpdate -= OnFingerUpdate;

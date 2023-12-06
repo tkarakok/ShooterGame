@@ -9,7 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public void SetMovementAnim(float animFloat)
