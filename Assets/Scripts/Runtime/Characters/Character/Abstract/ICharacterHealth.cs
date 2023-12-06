@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface ICharacterHealth
 {
-    public void SetCharacterHealthValues(Character character);
+    void SetCharacterHealthValues(Character character);
+    void SetHealthAndDamageBars();
+    void SetInitializeHealthBarDefaultValues();
+    void SetHealthTextValue(int textValue);
 }

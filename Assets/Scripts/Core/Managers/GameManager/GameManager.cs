@@ -7,10 +7,12 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     private IGameStateController _gameStateController;
+    public CrosshairController CrosshairController { get; private set; }
     public Transform CrossHair { get; private set; }
     private void Awake()
     {
         _gameStateController = GetComponent<GameStateController>();
+        CrosshairController = FindObjectOfType<CrosshairController>();
         CrossHair = FindObjectOfType<Crosshair>(true).transform;
     }
 

@@ -20,10 +20,17 @@ public class Pistol : Weapon, IPistol
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
 
-            Debug.Log("Ray çarptı! Çarpılan nesne: " + hit.collider.gameObject.name);
+            if (hit.collider.TryGetComponent(out IDamagable damagable))
+            {
+                damagable.TakeDamage(50);
+                GameManager.Instance.CrosshairController.SetColor(Color.red);
+                Debug.Log("Ray çarptı! Çarpılan nesne: " + hit.collider.gameObject.name);
+            }
+            
         }
         else
         {
+            GameManager.Instance.CrosshairController.SetColor(Color.green);
             Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green);
         }
     }
