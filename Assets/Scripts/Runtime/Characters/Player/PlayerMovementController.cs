@@ -100,7 +100,7 @@ public class PlayerMovementController : MonoBehaviour
         float rotationX = InputController.DeltaInputVector.y * RotationMultiplier * .5f * Time.deltaTime;
         var rotCamAngle = new Vector3(0, rotationX, 0);
         transform.Rotate(0, rotationY, 0);
-        CameraManager.Instance.CameraController.RotateCameraWithAim(rotCamAngle);
+        CameraManager.Instance.CameraController.RotateCameraWithAim(InputController.Diff);
     }
 
 

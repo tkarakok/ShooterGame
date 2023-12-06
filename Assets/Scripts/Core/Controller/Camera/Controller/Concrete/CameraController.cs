@@ -23,10 +23,11 @@ public class CameraController : MonoBehaviour, ICameraController
         return new SuccessResult();
     }
 
-    public Result RotateCameraWithAim(Vector3 rotAngle)
+    public Result RotateCameraWithAim(float value)
     {
         var result = CinemachineVirtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-        //result.ShoulderOffset.y =Mathf.Clamp(rotAngle.y,0f,1.75f);
+        result.ShoulderOffset.y -= value;
+        result.ShoulderOffset.y = Mathf.Clamp(result.ShoulderOffset.y, .4f, 1.75f);
         return new SuccessResult();
     }
 }

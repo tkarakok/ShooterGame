@@ -14,6 +14,9 @@ public class InputController : MonoBehaviour, IInputController
     /// </summary>
     public static Vector2 DeltaInputVector { get; private set; } = Vector2.zero;
 
+    private Vector2 _firstTouch;
+    public static float Diff;
+    
     public bool PreventInput { get; private set; }
 
     private void Awake()
@@ -22,9 +25,6 @@ public class InputController : MonoBehaviour, IInputController
         
     }
 
-    private void Update()
-    {
-    }
 
     private void OnEnable()
     {
@@ -50,6 +50,7 @@ public class InputController : MonoBehaviour, IInputController
 
     private void OnFingerDown(LeanFinger finger)
     {
+        _firstTouch = finger.ScreenPosition;
         if (PreventInput)
         {
             SetDeltaInputVector(Vector2.zero);
@@ -62,6 +63,7 @@ public class InputController : MonoBehaviour, IInputController
 
     private void OnFingerUpdate(LeanFinger finger)
     {
+        Diff = (finger.ScreenPosition.y - _firstTouch.y) * Time.deltaTime * .1f;
         if (PreventInput)
         {
             SetDeltaInputVector(Vector2.zero);
