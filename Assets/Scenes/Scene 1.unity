@@ -499,6 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278150082}
+  - component: {fileID: 278150083}
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
@@ -521,6 +522,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1342524578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &278150083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278150081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cce7b9b6c5ea048bf8aa4d362776bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347074589
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.3, y: 0.3, z: 0.3}
-  ShoulderOffset: {x: 0.6, y: 1, z: 0}
+  ShoulderOffset: {x: 0.6, y: 1.092898, z: 0}
   VerticalArmLength: 1
   CameraSide: 1
   CameraDistance: 5
@@ -1921,6 +1934,7 @@ GameObject:
   - component: {fileID: 1762625187}
   - component: {fileID: 1762625190}
   - component: {fileID: 1762625191}
+  - component: {fileID: 1762625192}
   m_Layer: 0
   m_Name: Croshair_UnVisual
   m_TagString: Untagged
@@ -1993,6 +2007,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1762625192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762625186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4a4af1eb9bc7b48848018ecc28f0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1818369798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,8 +2044,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818369798}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000007437302, y: -0.059678987, z: 4.4464316e-10, w: 0.99821764}
-  m_LocalPosition: {x: 0.6000004, y: 2, z: -5.000001}
+  m_LocalRotation: {x: 0.0092060035, y: -0.05967645, z: 0.000550386, w: 0.9981752}
+  m_LocalPosition: {x: 0.6000004, y: 2.092898, z: -5.000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2080,6 +2106,8 @@ GameObject:
   - component: {fileID: 1818942240}
   - component: {fileID: 1818942239}
   - component: {fileID: 1818942243}
+  - component: {fileID: 1818942245}
+  - component: {fileID: 1818942244}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2192,9 +2220,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863cde9064292fd4ca955df08589abbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: {fileID: 1762625187}
-  _startTransform: {fileID: 278150082}
-  worldPos: {x: 0, y: 0, z: 0}
+--- !u!114 &1818942244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818942237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a145f750dd24c4b9a9f37460ea3fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1818942245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818942237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5b60667bf4d7948860b5b75efff684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterData: {fileID: 11400000, guid: 0bc4fe0c3841a2a459c61b979fdbc9e0, type: 2}
 --- !u!1 &1823664156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,8 +2726,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938012769}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000007437302, y: -0.059678987, z: 4.4464316e-10, w: 0.99821764}
-  m_LocalPosition: {x: 0.6000004, y: 2, z: -5.000001}
+  m_LocalRotation: {x: 0.0092060035, y: -0.05967645, z: 0.000550386, w: 0.9981752}
+  m_LocalPosition: {x: 0.6000004, y: 2.092898, z: -5.000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3136,6 +3186,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1302629844}
   - {fileID: 1924376752}
   - {fileID: 523465896}
   - {fileID: 841998872}
@@ -3144,4 +3195,3 @@ SceneRoots:
   - {fileID: 1823664160}
   - {fileID: 1073668598}
   - {fileID: 855866428}
-  - {fileID: 1302629844}

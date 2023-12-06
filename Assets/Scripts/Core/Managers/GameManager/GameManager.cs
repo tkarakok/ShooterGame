@@ -7,10 +7,11 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     private IGameStateController _gameStateController;
-    
+    public Transform CrossHair { get; private set; }
     private void Awake()
     {
         _gameStateController = GetComponent<GameStateController>();
+        CrossHair = FindObjectOfType<Crosshair>(true).transform;
     }
 
     private void OnEnable()
