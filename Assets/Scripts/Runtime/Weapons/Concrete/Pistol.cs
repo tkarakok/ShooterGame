@@ -10,8 +10,14 @@ public class Pistol : Weapon, IPistol
         _firePoint = GetComponentInChildren<FirePoint>().transform;
     }
 
-    public void Attack()
+    public override void Start()
     {
+        base.Start();
+    }
+
+    public override void Attack()
+    {
+        base.Attack();
         Ray ray = new Ray(_firePoint.position, (GameManager.Instance.CrossHair.position - _firePoint.position).normalized);
 
         RaycastHit hit;
