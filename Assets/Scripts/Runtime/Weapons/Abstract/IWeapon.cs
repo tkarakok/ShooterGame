@@ -6,4 +6,5 @@ public interface IWeapon
 {
     void Attack();
     void SetWeaponData();
+    void PlayFireEffect();
 }

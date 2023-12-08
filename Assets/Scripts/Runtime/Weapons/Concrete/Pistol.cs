@@ -35,6 +35,8 @@ public class Pistol : Weapon, IPistol
             Vector3 dir =  (hit.point - _firePoint.position).normalized;
             _bulletRb.velocity = dir * 50;
         }
+        
+        PlayFireEffect();
 
     }
 

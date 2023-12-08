@@ -4,12 +4,13 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
     public WeaponData WeaponData;
-
+    protected ParticleSystem _fireEffect;
     public int Damage { get; private set; }
     public int ReloadDuration { get; private set; }
 
     public virtual void Start()
     {
+        _fireEffect = GetComponentInChildren<ParticleSystem>();
         SetWeaponData();
     }
 
@@ -24,4 +25,9 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         ReloadDuration = WeaponData.ReloadDuration;
     }
 
+    public void PlayFireEffect()
+    {
+        _fireEffect.Stop();
+        _fireEffect.Play();
+    }
 }
