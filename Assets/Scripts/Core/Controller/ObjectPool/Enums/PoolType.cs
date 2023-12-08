@@ -5,5 +5,7 @@ using UnityEngine;
 public enum PoolType 
 {
     Default,
-    Bullet
+    Bullet,
+    Hit,
+    Blood
 }

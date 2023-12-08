@@ -40,14 +40,20 @@ MonoBehaviour:
     - MoreMountains.NiceVibrations.Editor
     - PPv2URPConverters
     - MK.RampCreator
+    - CFXREditor
     - LeanCommon
     - MoreMountains.NiceVibrations
     - MoreMountains.NiceVibrations.Haptics
     - Boxophobic.SkyboxCubemapExtended.Editor
     - LeanTouch
     - MK.Toon
+    - ToonyColorsPro.Demo.Editor
+    - CFXRRuntime
     - MK.MKTextureChannelPacker
+    - KinoBloom.Runtime
     - MK.Toon.URP
+    - CFXRDemo
+    - CFXR.WelcomeScreen
     - MK.Toon.URP.Editor
     - MK.MeshUtility
     showAdvancedSettings: 0

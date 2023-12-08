@@ -14,20 +14,29 @@ public class BulletCollisionController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Env"))
+        {
+            _bullet.ResetVelocity();
+            var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Hit).Data.GetPoolObject(false);
+            var particle = effect.GetComponent<Particle>();
+            particle.PlayEffect(collision.contacts[0].point);
+            _bullet.ResetObject();
+        }
        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IDamagable damagable))
+        if (other.transform.TryGetComponent(out IDamageArea damageArea))
         {
+            _bullet.ResetVelocity();
+            damageArea.TakeDamage(_bullet.Damage);
+            var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Blood).Data.GetPoolObject(false);
+            var particle = effect.GetComponent<Particle>();
+            particle.PlayEffect(other.transform.position);
             _bullet.ResetObject();
-            damagable.TakeDamage(_bullet.Damage);
         }
-        else
-        {
-            _bullet.ResetObject();
-        }
+        
     }
 
 }

@@ -33,7 +33,7 @@ public class Pistol : Weapon, IPistol
         if (Physics.Raycast(ray, out hit, 999f))
         {
             Vector3 dir =  (hit.point - _firePoint.position).normalized;
-            _bulletRb.velocity = dir * 150;
+            _bulletRb.velocity = dir * 50;
         }
 
     }

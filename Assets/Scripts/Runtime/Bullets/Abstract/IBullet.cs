@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IBullet
 {
     void SetDamage(int damage);
+    void ResetVelocity();
 }
