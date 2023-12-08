@@ -27,9 +27,14 @@ public class Pistol : Weapon, IPistol
         
         _bulletTransform.GetComponent<IBullet>().SetDamage(Damage);
 
-        Vector3 dir =_firePoint.transform.forward;
-
-        _bulletRb.velocity = dir * 100;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Ekranın ortasına ışın gönderme
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit, 999f))
+        {
+            Vector3 dir =  (hit.point - _firePoint.position).normalized;
+            _bulletRb.velocity = dir * 150;
+        }
 
     }
 

@@ -24,6 +24,10 @@ public class BulletCollisionController : MonoBehaviour
             _bullet.ResetObject();
             damagable.TakeDamage(_bullet.Damage);
         }
+        else
+        {
+            _bullet.ResetObject();
+        }
     }
 
 }
