@@ -30,7 +30,9 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp-firstpass
+    - Boxophobic.Utils.Scripts
     - Cinemachine
+    - Boxophobic.Utils.Editor
     - MoreMountains.NiceVibrations.Demos
     - Assembly-CSharp
     - CW.Common
@@ -41,6 +43,7 @@ MonoBehaviour:
     - LeanCommon
     - MoreMountains.NiceVibrations
     - MoreMountains.NiceVibrations.Haptics
+    - Boxophobic.SkyboxCubemapExtended.Editor
     - LeanTouch
     - MK.Toon
     - MK.MKTextureChannelPacker

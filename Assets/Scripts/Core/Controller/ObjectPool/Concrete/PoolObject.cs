@@ -6,9 +6,9 @@ public class PoolObject : MonoBehaviour, IPoolObject
 {
     public bool IsAvailable { get; set; } = true;
 
-    public void OnGetPool()
+    public void OnGetPool(bool isActive)
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(isActive);
         IsAvailable = false;
     }
 

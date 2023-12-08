@@ -22,11 +22,11 @@ public class Pool
         }
     }
         
-    public GameObject GetPoolObject()
+    public GameObject GetPoolObject(bool isActive = true)
     {
         GameObject obj = PoolQueue.Dequeue();
         PoolObject poolObject = obj.GetComponent<PoolObject>();
-        poolObject.OnGetPool();
+        poolObject.OnGetPool(isActive);
         PoolQueue.Enqueue(obj);
         return obj;
     }

@@ -19,17 +19,18 @@ public class Pistol : Weapon, IPistol
     {
         base.Attack();
         Transform _bulletTransform = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Bullet).Data
-            .GetPoolObject().transform;
+            .GetPoolObject(false).transform;
 
         _bulletTransform.position = _firePoint.position;
-        
+        _bulletTransform.gameObject.SetActive(true);
         Rigidbody _bulletRb = _bulletTransform.GetComponent<Rigidbody>();
         
         _bulletTransform.GetComponent<IBullet>().SetDamage(Damage);
 
-        Vector3 dir = (GameManager.Instance.CrossHair.position - _firePoint.position).normalized;
+        Vector3 dir =_firePoint.transform.forward;
 
         _bulletRb.velocity = dir * 100;
 
     }
+
 }

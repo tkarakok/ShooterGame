@@ -23,4 +23,5 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         Damage = WeaponData.Damage;
         ReloadDuration = WeaponData.ReloadDuration;
     }
+
 }

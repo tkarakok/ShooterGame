@@ -7,10 +7,20 @@ using UnityEngine.UI;
 public class CrosshairController : MonoBehaviour, ICrosshairController
 {
     private Image _crossHair;
-
+    private RectTransform _crosshairRectTransform;
+    
+    [SerializeField] private Transform _firePoint;
     private void Start()
     {
         _crossHair = GetComponent<Image>();
+        _crosshairRectTransform = _crossHair.GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        // var objectPosition = Camera.main.WorldToScreenPoint(_firePoint.position + _firePoint.transform.forward * 10);
+        // var move = objectPosition - _crosshairRectTransform.position;
+        // _crosshairRectTransform.position += move;
     }
 
     public void SetColor(Color color)

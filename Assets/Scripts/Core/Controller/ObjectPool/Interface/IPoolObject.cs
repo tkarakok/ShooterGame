@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IPoolObject
 {
-    public void OnGetPool();
+    public void OnGetPool(bool isActive);
     public void ResetObject();
     public void DestroyObject();
     

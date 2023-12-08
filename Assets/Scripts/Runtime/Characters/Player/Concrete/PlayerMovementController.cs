@@ -15,11 +15,14 @@ public class PlayerMovementController : MonoBehaviour
     #endregion
 
     private PlayerAnimationController _playerAnimationController;
-
+    
     public float MovementMultiplier;
+     
     public float RotationMultiplier;
 
     public bool PreventMovement;
+
+    private Weapon _weapon;
 
     #region Init Variables Rotation
 
@@ -32,6 +35,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         _playerAnimationController = GetComponent<PlayerAnimationController>();
         Rigidbody = GetComponent<Rigidbody>();
+        _weapon = GetComponentInChildren<Weapon>();
     }
 
     private void FixedUpdate()
@@ -58,27 +62,31 @@ public class PlayerMovementController : MonoBehaviour
             _playerAnimationController.SeHitAnim();
         }
         
-
         #endregion
     }
 
+
+    
     protected void ControllerLogic(Vector3 movement)
     {
         CharacterMovement(movement);
         CharacterRotation();
     }
 
-    private void CharacterMovement(Vector3 direction)
+    private void CharacterMovement(Vector3 _direction)
     {
+        
         // Vector3 movement = transform.TransformDirection(new Vector3(
         //     InputController.Joystick.Direction.x * MovementMultiplier,
         //     0,
         //     InputController.Joystick.Direction.y * MovementMultiplier));
+        
+        
         Rigidbody.velocity =  transform.TransformDirection(
             new Vector3(
-                direction.x * MovementMultiplier,
+                _direction.x * MovementMultiplier,
                 Rigidbody.velocity.y,
-                direction.z * MovementMultiplier
+                _direction.z * MovementMultiplier
                 ));
     }
 
@@ -86,8 +94,7 @@ public class PlayerMovementController : MonoBehaviour
     private void CharacterRotation()
     {
         // _currentRot = transform.rotation;
-        // _targetRotAngle = new Vector3(InputController.DeltaInputVector.x, Rigidbody.velocity.y,
-        //         InputController.DeltaInputVector.y)
+        // _targetRotAngle = new Vector3(InputController.Joystick.Horizontal, Rigidbody.velocity.y, InputController.Joystick.Vertical)
         //     .normalized;
         // if (_targetRotAngle == Vector3.zero) _targetRotAngle = new Vector3(0, 0.001f, 0);
         // Quaternion lookRotation = Quaternion.LookRotation(_targetRotAngle, Vector3.up);
@@ -98,9 +105,8 @@ public class PlayerMovementController : MonoBehaviour
         if (LeanTouch.Fingers.Count == 0) return;
         float rotationY = InputController.DeltaInputVector.x * RotationMultiplier * Time.deltaTime;
         float rotationX = InputController.DeltaInputVector.y * RotationMultiplier * .5f * Time.deltaTime;
-        var rotCamAngle = new Vector3(0, rotationX, 0);
         transform.Rotate(0, rotationY, 0);
-        CameraManager.Instance.CameraController.RotateCameraWithAim(InputController.Diff);
+        // CameraManager.Instance.CameraController.RotateCameraWithAim(InputController.Diff);
     }
 
 
