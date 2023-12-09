@@ -104,7 +104,7 @@ public class PlayerMovementController : MonoBehaviour
         //     Time.fixedDeltaTime * RotationMultiplier);
         if (LeanTouch.Fingers.Count == 0) return;
         float rotationY = InputController.DeltaInputVector.x * RotationMultiplier * Time.deltaTime;
-        float rotationX = InputController.DeltaInputVector.y * RotationMultiplier * .5f * Time.deltaTime;
+        float rotationX = InputController.DeltaInputVector.y * RotationMultiplier * Time.deltaTime;
         transform.Rotate(0, rotationY, 0);
         // CameraManager.Instance.CameraController.RotateCameraWithAim(InputController.Diff);
     }
