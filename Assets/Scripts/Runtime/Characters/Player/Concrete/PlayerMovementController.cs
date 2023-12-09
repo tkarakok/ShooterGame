@@ -11,7 +11,6 @@ public class PlayerMovementController : MonoBehaviour
     #region References
 
     public Rigidbody Rigidbody { get; protected set; }
-
     #endregion
 
     private PlayerAnimationController _playerAnimationController;
@@ -103,10 +102,11 @@ public class PlayerMovementController : MonoBehaviour
         // transform.rotation = Quaternion.Lerp(_currentRot, lookRotation,
         //     Time.fixedDeltaTime * RotationMultiplier);
         if (LeanTouch.Fingers.Count == 0) return;
-        float rotationY = InputController.DeltaInputVector.x * RotationMultiplier * Time.deltaTime;
-        float rotationX = InputController.DeltaInputVector.y * RotationMultiplier * Time.deltaTime;
+        float rotationY = InputController.DeltaInputVector.x * RotationMultiplier * Time.fixedDeltaTime;
+        float rotationX = InputController.DeltaInputVector.y * RotationMultiplier * Time.fixedDeltaTime;
         transform.Rotate(0, rotationY, 0);
-        // CameraManager.Instance.CameraController.RotateCameraWithAim(InputController.Diff);
+        transform.GetChild(0).Rotate(-rotationX,0,0);
+       // CameraManager.Instance.CameraController.RotateCameraWithAim(-rotationX);
     }
 
 

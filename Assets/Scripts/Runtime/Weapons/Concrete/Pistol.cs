@@ -32,8 +32,17 @@ public class Pistol : Weapon, IPistol
         
         if (Physics.Raycast(ray, out hit, 999f))
         {
-            Vector3 dir =  (hit.point - _firePoint.position).normalized;
-            _bulletRb.velocity = dir * 50;
+            if (hit.transform)
+            {
+                Vector3 dir =  (hit.point - _firePoint.position).normalized;
+                _bulletRb.velocity = dir * 100;
+            }
+           
+           
+        }
+        else
+        {
+            _bulletRb.velocity = _firePoint.transform.forward * 100;
         }
         
         PlayFireEffect();
