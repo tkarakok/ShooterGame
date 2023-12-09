@@ -13,7 +13,7 @@ public class Magazine : MonoBehaviour, IMagazine
     public float ReloadDuration { get; private set; }
     public bool CanFire { get; private set; }
     
-    public void SetMagazineDatas(MagazineData _magazineData)
+    public virtual void SetMagazineDatas(MagazineData _magazineData)
     {
         MagazineCapacity = _magazineData.MagazineCapacity;
         ReloadDuration = _magazineData.ReloadDuration;
@@ -22,20 +22,15 @@ public class Magazine : MonoBehaviour, IMagazine
         ChangeCanFire(true);
     }
 
-    public Result DecreaseCurrentAmmoInMagazine()
+    public virtual void DecreaseCurrentAmmoInMagazine()
     {
         CurrentAmmoInMagazine -= 1;
         CurrentAmmoInMagazine = Mathf.Clamp(CurrentAmmoInMagazine, 0, MagazineCapacity);
         if (CurrentAmmoInMagazine <= 0 && TotalAmmo > 0)
-        {
             Reload();
-            return new SuccessResult("Success");
-        }
-        else
-            return new ErrorResult("No Ammo");
     }
 
-    public void Reload()
+    public virtual void Reload()
     {
         ChangeCanFire(false);
         DOVirtual.DelayedCall(ReloadDuration, () => ChangeCanFire(true)).OnComplete(()=>

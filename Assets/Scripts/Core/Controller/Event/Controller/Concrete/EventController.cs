@@ -21,7 +21,9 @@ public class EventController : MonoBehaviour, IEventController
         }
         else
         {
-            return new ErrorDataResult<T>("Event not exist in system");
+            eventToReturn = (EventSystem.NoParamEvent)Activator.CreateInstance(eventType);
+            _events.Add(eventType, eventToReturn);
+            return new ErrorDataResult<T>((T)eventToReturn);
         }
     }
 

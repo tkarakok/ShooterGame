@@ -19,11 +19,22 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         _magazine = GetComponentInChildren<IMagazine>();
         _magazine.SetMagazineDatas(WeaponData.MagazineData);
         SetWeaponData();
+        
+        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.AddListener(_magazine.DecreaseCurrentAmmoInMagazine);
+        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.AddListener(PlayFireEffect);
+    }
+
+    private void OnDisable()
+    {
+        // if (!EventManager.Instance.EventController) return;
+        // EventManager.Instance.EventController.GetEvent<FireEvent>().Data.RemoveListener(_magazine.DecreaseCurrentAmmoInMagazine);
+        // EventManager.Instance.EventController.GetEvent<FireEvent>().Data.RemoveListener(PlayFireEffect);
     }
 
     public virtual void Attack()
     {
         if (!_magazine.CanFire()) return;
+        
         Transform _bulletTransform = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Bullet).Data
             .GetPoolObject(false).transform;
 
@@ -32,9 +43,8 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         Rigidbody _bulletRb = _bulletTransform.GetComponent<Rigidbody>();
         
         _bulletTransform.GetComponent<IBullet>().SetDamage(Damage);
-        _magazine.DecreaseCurrentAmmoInMagazine();
         
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Ekranın ortasına ışın gönderme
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); 
         RaycastHit hit;
         
         if (Physics.Raycast(ray, out hit, 999f))
@@ -50,7 +60,7 @@ public abstract class Weapon : MonoBehaviour, IWeapon
             _bulletRb.velocity = _firePoint.transform.forward * 100;
         }
         
-        PlayFireEffect();
+        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.Execute();
     }
 
     public void SetWeaponData()

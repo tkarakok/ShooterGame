@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IMagazine
 {
     void SetMagazineDatas(MagazineData magazineData);
-    Result DecreaseCurrentAmmoInMagazine();
+    void DecreaseCurrentAmmoInMagazine();
     void Reload();
     void ChangeCanFire(bool param);
     bool CanFire();
