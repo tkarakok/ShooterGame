@@ -1,23 +1,29 @@
 ﻿using System;
 using UnityEngine;
 
-public class Pistol : Weapon, IPistol
+public abstract class Weapon : MonoBehaviour, IWeapon
 {
-    private Transform _firePoint;
+    public WeaponData WeaponData;
+    
+    protected Transform _firePoint;
+    protected ParticleSystem _fireEffect;
+    protected IMagazine _magazine;
+    
+    public int Damage { get; private set; }
+    public int ReloadDuration { get; private set; }
 
-    private void Awake()
+    public virtual void Start()
     {
+        _fireEffect = GetComponentInChildren<ParticleSystem>();
         _firePoint = GetComponentInChildren<FirePoint>().transform;
+        _magazine = GetComponentInChildren<IMagazine>();
+        _magazine.SetMagazineDatas(WeaponData.MagazineData);
+        SetWeaponData();
     }
 
-    public override void Start()
+    public virtual void Attack()
     {
-        base.Start();
-    }
-
-    public override void Attack()
-    {
-        base.Attack();
+        if (!_magazine.CanFire()) return;
         Transform _bulletTransform = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Bullet).Data
             .GetPoolObject(false).transform;
 
@@ -26,7 +32,8 @@ public class Pistol : Weapon, IPistol
         Rigidbody _bulletRb = _bulletTransform.GetComponent<Rigidbody>();
         
         _bulletTransform.GetComponent<IBullet>().SetDamage(Damage);
-
+        _magazine.DecreaseCurrentAmmoInMagazine();
+        
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Ekranın ortasına ışın gönderme
         RaycastHit hit;
         
@@ -37,8 +44,6 @@ public class Pistol : Weapon, IPistol
                 Vector3 dir =  (hit.point - _firePoint.position).normalized;
                 _bulletRb.velocity = dir * 100;
             }
-           
-           
         }
         else
         {
@@ -46,7 +51,19 @@ public class Pistol : Weapon, IPistol
         }
         
         PlayFireEffect();
-
     }
 
+    public void SetWeaponData()
+    {
+        Damage = WeaponData.Damage;
+        ReloadDuration = WeaponData.ReloadDuration;
+    }
+
+    public void PlayFireEffect()
+    {
+        _fireEffect.Stop();
+        _fireEffect.Play();
+    }
+
+    
 }
