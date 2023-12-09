@@ -22,20 +22,34 @@ public class BulletCollisionController : MonoBehaviour
             particle.PlayEffect(collision.contacts[0].point);
             _bullet.ResetObject();
         }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Hit"))
+        {
+            var damageArea = collision.gameObject.GetComponent<IDamagable>();
+            _bullet.ResetVelocity();
+            damageArea.TakeDamage(_bullet.Damage);
+            var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Blood).Data.GetPoolObject(false);
+            var particle = effect.GetComponent<Particle>();
+            particle.PlayEffect(collision.contacts[0].point);
+            _bullet.ResetObject();
+        }
+        else if (collision.transform.TryGetComponent(out IDamageArea damageArea))
+        {
+            
+        }
        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.TryGetComponent(out IDamageArea damageArea))
-        {
-            _bullet.ResetVelocity();
-            damageArea.TakeDamage(_bullet.Damage);
-            var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Blood).Data.GetPoolObject(false);
-            var particle = effect.GetComponent<Particle>();
-            particle.PlayEffect(other.transform.position);
-            _bullet.ResetObject();
-        }
+        // if (other.transform.TryGetComponent(out IDamageArea damageArea))
+        // {
+        //     _bullet.ResetVelocity();
+        //     damageArea.TakeDamage(_bullet.Damage);
+        //     var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Blood).Data.GetPoolObject(false);
+        //     var particle = effect.GetComponent<Particle>();
+        //     particle.PlayEffect(other.transform.position);
+        //     _bullet.ResetObject();
+        // }
         
     }
 
