@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class Particle : PoolObject, IParticle
 {
+    [SerializeField] private bool isStopActionCallback;
     private ParticleSystem _particleSystem;
-
+    private ParticleSystem.MainModule _main;
     private void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
+        if (isStopActionCallback)
+            _main.stopAction = ParticleSystemStopAction.Callback;
     }
 
     public void SetPosition(Vector3 position)
@@ -25,6 +28,12 @@ public class Particle : PoolObject, IParticle
             gameObject.SetActive(true);
         _particleSystem.Stop();
         _particleSystem.Play();
-        DOVirtual.DelayedCall(.2f, ResetObject);
+        if (isStopActionCallback)
+            ResetObject();
+    }
+
+    private void OnParticleSystemStopped()
+    {
+        ResetObject();
     }
 }

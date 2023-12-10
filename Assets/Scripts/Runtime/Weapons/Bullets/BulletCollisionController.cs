@@ -31,20 +31,14 @@ public class BulletCollisionController : MonoBehaviour
             particle.PlayEffect(collision.contacts[0].point);
             _bullet.ResetObject();
         }
+        else if (collision.gameObject.TryGetComponent(out IBarrel barrel))
+        {
+            _bullet.ResetVelocity();
+            _bullet.ResetObject();
+            barrel.SetExplosionPos(collision.transform.position);
+            barrel.Interactable();
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // if (other.transform.TryGetComponent(out IDamageArea damageArea))
-        // {
-        //     _bullet.ResetVelocity();
-        //     damageArea.TakeDamage(_bullet.Damage);
-        //     var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Blood).Data.GetPoolObject(false);
-        //     var particle = effect.GetComponent<Particle>();
-        //     particle.PlayEffect(other.transform.position);
-        //     _bullet.ResetObject();
-        // }
-        
-    }
 
 }

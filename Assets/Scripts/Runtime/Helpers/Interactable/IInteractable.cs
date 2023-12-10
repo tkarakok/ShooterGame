@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PoolType 
+public interface IInteractable
 {
-    Default,
-    Bullet,
-    Hit,
-    Blood,
-    Explosion
+    void Interactable();
 }
