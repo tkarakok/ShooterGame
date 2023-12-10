@@ -1,39 +1,45 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Magazine))]
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
     public WeaponData WeaponData;
     
     protected Transform _firePoint;
     protected ParticleSystem _fireEffect;
-    protected IMagazine _magazine;
+    public Magazine Magazine { get; protected set; }
     
     public int Damage { get; private set; }
     public int ReloadDuration { get; private set; }
 
-    public virtual void Start()
+    private bool _isActiveWeapon;
+    
+    public virtual void Awake()
     {
         _fireEffect = GetComponentInChildren<ParticleSystem>();
         _firePoint = GetComponentInChildren<FirePoint>().transform;
-        _magazine = GetComponentInChildren<IMagazine>();
-        _magazine.SetMagazineDatas(WeaponData.MagazineData);
+        Magazine = GetComponentInChildren<Magazine>();
+        Magazine.SetMagazineDatas(WeaponData.MagazineData);
         SetWeaponData();
         
-        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.AddListener(_magazine.DecreaseCurrentAmmoInMagazine);
+    }
+
+    private void OnEnable()
+    {
         EventManager.Instance.EventController.GetEvent<FireEvent>().Data.AddListener(PlayFireEffect);
+        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.AddListener(Magazine.DecreaseCurrentAmmoInMagazine);
     }
 
     private void OnDisable()
     {
-        // if (!EventManager.Instance.EventController) return;
-        // EventManager.Instance.EventController.GetEvent<FireEvent>().Data.RemoveListener(_magazine.DecreaseCurrentAmmoInMagazine);
-        // EventManager.Instance.EventController.GetEvent<FireEvent>().Data.RemoveListener(PlayFireEffect);
+        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.RemoveListener(PlayFireEffect);
+        EventManager.Instance.EventController.GetEvent<FireEvent>().Data.RemoveListener(Magazine.DecreaseCurrentAmmoInMagazine);
     }
 
     public virtual void Attack()
     {
-        if (!_magazine.CanFire()) return;
+        if (!Magazine.CanFire || !_isActiveWeapon) return;
         
         Transform _bulletTransform = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Bullet).Data
             .GetPoolObject(false).transform;
@@ -59,7 +65,9 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         {
             _bulletRb.velocity = _firePoint.transform.forward * 100;
         }
-        
+
+        // PlayFireEffect();
+        // Magazine.DecreaseCurrentAmmoInMagazine();
         EventManager.Instance.EventController.GetEvent<FireEvent>().Data.Execute();
     }
 
@@ -75,5 +83,8 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         _fireEffect.Play();
     }
 
-    
+    public void ChangeActiveneesWeapon(bool value)
+    {
+        _isActiveWeapon = value;
+    }
 }

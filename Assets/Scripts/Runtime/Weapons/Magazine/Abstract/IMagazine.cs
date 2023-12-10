@@ -9,5 +9,4 @@ public interface IMagazine
     void DecreaseCurrentAmmoInMagazine();
     void Reload();
     void ChangeCanFire(bool param);
-    bool CanFire();
 }

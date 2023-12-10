@@ -7,4 +7,5 @@ public interface IWeapon
     void Attack();
     void SetWeaponData();
     void PlayFireEffect();
+    void ChangeActiveneesWeapon(bool value);
 }

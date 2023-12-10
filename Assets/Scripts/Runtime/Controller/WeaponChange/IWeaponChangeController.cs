@@ -7,4 +7,5 @@ public interface IWeaponChangeController
     void WeaponPanelAction();
     void OpenWeaponChangePanel();
     void CloseWeaponChangePanel();
+    void ChangeWeapon(Weapon weapon);
 }

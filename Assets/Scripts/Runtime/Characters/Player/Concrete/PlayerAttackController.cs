@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class PlayerAttackController : CharacterAttackController
 {
-    public IWeapon Weapon { get; private set; }
-
-    private void Start()
+    public override void Start()
     {
-        Weapon = GetComponentInChildren<IWeapon>();
+        base.Start();
+        EventManager.Instance.EventController.GetEvent<WeaponChanged>().Data.Execute();
     }
 
     private void Update()
     {
-        if (Weapon != null && Input.GetKeyDown(KeyCode.F))
-            Attack(Weapon);
+        if (ActiveWeapon != null && Input.GetKeyDown(KeyCode.F) && !NoWeapon)
+            Attack(ActiveWeapon);
     }
     
 }

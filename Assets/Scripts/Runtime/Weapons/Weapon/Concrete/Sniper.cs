@@ -19,8 +19,6 @@ public class Sniper : Weapon, ISniper
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawLine(ray.origin, hit.point, Color.red);
-
-            Debug.Log("Ray çarptı! Çarpılan nesne: " + hit.collider.gameObject.name);
         }
         else
         {

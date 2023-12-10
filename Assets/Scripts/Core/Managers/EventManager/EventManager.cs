@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(EventController))]
 public class EventManager : Singleton<EventManager>
 {
-    private EventController _eventController;
+    [SerializeField]private EventController _eventController;
     public EventController EventController => _eventController;
 
     private void Awake()

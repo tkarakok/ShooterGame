@@ -38,14 +38,11 @@ public class Magazine : MonoBehaviour, IMagazine
             TotalAmmo -= MagazineCapacity;
             CurrentAmmoInMagazine = MagazineCapacity;
         });
+        EventManager.Instance.EventController.GetEvent<ReloadEvent>().Data.Execute();
     }
     public void ChangeCanFire(bool param)
     {
         CanFire = param;
     }
 
-    bool IMagazine.CanFire()
-    {
-        return CanFire;
-    }
 }
