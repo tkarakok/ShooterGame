@@ -17,18 +17,14 @@ public class BulletCollisionController : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Env"))
         {
             _bullet.ResetVelocity();
-            var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Hit).Data.GetPoolObject(false);
-            var particle = effect.GetComponent<Particle>();
-            particle.PlayEffect(collision.contacts[0].point);
+            ParticleManager.Instance.ParticleController.SetParticleAndPlay(collision.contacts[0].point, PoolType.Hit);
             _bullet.ResetObject();
         }
         else if(collision.gameObject.TryGetComponent(out IDamagable damagable))
         {
             _bullet.ResetVelocity();
             damagable.TakeDamage(_bullet.Damage);
-            var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Blood).Data.GetPoolObject(false);
-            var particle = effect.GetComponent<Particle>();
-            particle.PlayEffect(collision.contacts[0].point);
+            ParticleManager.Instance.ParticleController.SetParticleAndPlay(collision.contacts[0].point, PoolType.Blood);
             _bullet.ResetObject();
         }
         else if (collision.gameObject.TryGetComponent(out IBarrel barrel))

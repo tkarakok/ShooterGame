@@ -9,9 +9,7 @@ public class Barrel : MonoBehaviour , IBarrel
     private Vector3 _explosionPos;
     public void Interactable()
     {
-        var effect = ObjectPoolManager.Instance.OjectPoolController.GetPool(PoolType.Explosion).Data.GetPoolObject(false);
-        var particle = effect.GetComponent<Particle>();
-        particle.PlayEffect(_explosionPos);
+        ParticleManager.Instance.ParticleController.SetParticleAndPlay(_explosionPos, PoolType.Explosion);
         GetCharactersAndSetDamage();
     }
 
