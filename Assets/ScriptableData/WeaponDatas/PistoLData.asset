@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponImage: {fileID: 21300040, guid: 6674e8c43c63e4f4184cbd009379498d, type: 3}
   MagazineData: {fileID: 11400000, guid: cd35bbea6dac3da47ac523e3283c0507, type: 2}
-  Damage: 15
-  ReloadDuration: 2
+  Damage: 20
+  ReloadDuration: 1
