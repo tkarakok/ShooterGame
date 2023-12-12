@@ -30,7 +30,9 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - Assembly-CSharp-firstpass
+    - Zenject
     - Boxophobic.Utils.Scripts
+    - Zenject-IntegrationTests
     - Boxophobic.Utils.Editor
     - MoreMountains.NiceVibrations.Demos
     - Assembly-CSharp
@@ -49,6 +51,7 @@ MonoBehaviour:
     - KinoBloom.Runtime
     - ToonyColorsPro.Demo.Editor
     - MK.Toon
+    - Zenject-TestFramework
     - Boxophobic.SkyboxCubemapExtended.Editor
     - MoreMountains.NiceVibrations
     - CFXRDemo

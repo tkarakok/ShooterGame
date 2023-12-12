@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Magazine))]
 public abstract class Weapon : MonoBehaviour, IWeapon
@@ -14,6 +15,8 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     public int ReloadDuration { get; private set; }
 
     private bool _isActiveWeapon;
+
+    [Inject] private CrosshairController _crosshairController;
     
     public virtual void Awake()
     {
@@ -65,7 +68,7 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         {
             _bulletRb.velocity = _firePoint.transform.forward * 100;
         }
-
+        _crosshairController.SetCrosshairAnim();
         // PlayFireEffect();
         // Magazine.DecreaseCurrentAmmoInMagazine();
         EventManager.Instance.EventController.GetEvent<FireEvent>().Data.Execute();
