@@ -69,8 +69,6 @@ public abstract class Weapon : MonoBehaviour, IWeapon
             _bulletRb.velocity = _firePoint.transform.forward * 100;
         }
         _crosshairController.SetCrosshairAnim();
-        // PlayFireEffect();
-        // Magazine.DecreaseCurrentAmmoInMagazine();
         EventManager.Instance.EventController.GetEvent<FireEvent>().Data.Execute();
     }
 

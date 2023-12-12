@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CrosshairController : MonoBehaviour, ICrosshairController
 {
@@ -17,6 +18,7 @@ public class CrosshairController : MonoBehaviour, ICrosshairController
     {
         _crossHair = GetComponent<Image>();
         _crosshairRectTransform = _crossHair.GetComponent<RectTransform>();
+        SetCrosshairWave();
     }
 
 
@@ -34,5 +36,11 @@ public class CrosshairController : MonoBehaviour, ICrosshairController
         {
             _crosshairRectTransform.DOScale(Vector3.one, .1f).SetLoops(1, LoopType.Yoyo);
         });
+    }
+
+    public void SetCrosshairWave()
+    {
+        var newPos = new Vector3(Mathf.Clamp(Random.Range(-10f,10f),-10f,10f),Mathf.Clamp(Random.Range(-10f,10f),-10f,10f),0 );
+        _crossHair.transform.DOLocalMove(newPos, .5f).OnComplete(SetCrosshairWave);
     }
 }

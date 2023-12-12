@@ -6,4 +6,5 @@ public interface ICrosshairController
 {
     void SetColor(Color color);
     void SetCrosshairAnim();
+    void SetCrosshairWave();
 }
