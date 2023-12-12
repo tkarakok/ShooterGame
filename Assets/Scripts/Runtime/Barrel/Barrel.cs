@@ -25,7 +25,7 @@ public class Barrel : MonoBehaviour , IBarrel
         {
             if (hitCollider.TryGetComponent(out IDamagable damagable))
             {
-                damagable.TakeDamage(20);   
+                damagable.TakeDamage(105);   
             }
         }
     }

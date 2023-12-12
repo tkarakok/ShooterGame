@@ -46,22 +46,6 @@ public class PlayerMovementController : MonoBehaviour
         ControllerLogic(movement);
         _playerAnimationController.SetMovementAnim(movement.normalized.magnitude);
         
-        #region Anims
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            _playerAnimationController.SeBuffAnim();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            PreventMovement = true;
-            _playerAnimationController.SeLootAnim();
-        }
-        else if (Input.GetKeyDown(KeyCode.V))
-        {
-            _playerAnimationController.SeHitAnim();
-        }
-        
-        #endregion
     }
 
 
